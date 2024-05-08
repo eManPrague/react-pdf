@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 import { PDFViewer } from '@react-pdf/renderer';
 
-import Document from './fontFamilyFallback';
+import Document from './pdfa';
 
 import './index.css';
 

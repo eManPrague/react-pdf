@@ -3,17 +3,13 @@ import stream from 'stream';
 import PDFObject from './object';
 
 class PDFReference extends stream.Writable {
-  constructor(document, id, data) {
+  constructor(document, id, data = {}) {
     super({ decodeStrings: false });
 
     this.finalize = this.finalize.bind(this);
     this.document = document;
     this.id = id;
-    if (data == null) {
-      data = {};
-    }
     this.data = data;
-
     this.gen = 0;
     this.deflate = null;
     this.compress = this.document.compress && !this.data.Filter;
@@ -34,6 +30,11 @@ class PDFReference extends stream.Writable {
   }
 
   _write(chunk, encoding, callback) {
+    if (this.data.Length)
+      {
+        debugger;
+      }
+
     if (!(chunk instanceof Uint8Array)) {
       chunk = Buffer.from(chunk + '\n', 'binary');
     }

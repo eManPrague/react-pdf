@@ -35,7 +35,8 @@ const pdf = (initialValue) => {
 
   const render = async (compress = true) => {
     const props = container.document.props || {};
-    const { pdfVersion, language, pageLayout, pageMode } = props;
+    const { pdfVersion, language, pageLayout, pageMode, tagged, subset } =
+      props;
 
     const ctx = new PDFDocument({
       compress,
@@ -45,6 +46,8 @@ const pdf = (initialValue) => {
       autoFirstPage: false,
       pageLayout,
       pageMode,
+      tagged,
+      subset,
     });
 
     const layout = await layoutDocument(container.document, fontStore);
@@ -84,11 +87,8 @@ const pdf = (initialValue) => {
 
   // TODO: rename this method to `toStream` in next major release, because it return stream not a buffer
   const toBuffer = async () => {
-    const {
-      layout: _INTERNAL__LAYOUT__DATA_,
-      fileStream,
-    } = await render();
-    callOnRender({_INTERNAL__LAYOUT__DATA_});
+    const { layout: _INTERNAL__LAYOUT__DATA_, fileStream } = await render();
+    callOnRender({ _INTERNAL__LAYOUT__DATA_ });
 
     return fileStream;
   };
