@@ -39,6 +39,8 @@ declare namespace ReactPDF {
     creationDate?: Date;
     modificationDate?: Date;
     pdfVersion?: PDFVersion;
+    subset?: 'PDF/A-1' | 'PDF/A-1a' | 'PDF/A-1b' | 'PDF/A-2' | 'PDF/A-2a' | 'PDF/A-2b' | 'PDF/A-3' | 'PDF/A-3a' | 'PDF/A-3b' | 'PDF/UA';
+    tagged?: boolean;
     pageMode?: PageMode;
     pageLayout?: PageLayout;
     onRender?: (props: OnRenderProps) => any;
